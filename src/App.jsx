@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef, memo } from "react";
 import { Music, Clock, History, Plus } from "lucide-react";
 
-const API_BASE_URL = "http://localhost:3000";
-
 const formatDuration = (durationObj) => {
   const seconds = durationObj?.secs || 0;
   const minutes = Math.floor(seconds / 60);
@@ -398,7 +396,7 @@ const AddSongForm = ({ onSongAdded }) => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/send`, {
+      const response = await fetch(`http://157.245.128.28:3000/send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -462,7 +460,7 @@ const AddSongForm = ({ onSongAdded }) => {
 const BrutalistApp = () => {
   const [queue, setQueue] = useState([]);
   const [activeTab, setActiveTab] = useState("queue");
-  const [apiBaseUrl, setApiBaseUrl] = useState("http://localhost:3000");
+  const [apiBaseUrl, setApiBaseUrl] = useState("http://157.245.128.28:3000");
   const [url, setUrl] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -491,7 +489,7 @@ const BrutalistApp = () => {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/send`, {
+      const response = await fetch(`${apiBaseUrl}/send`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
